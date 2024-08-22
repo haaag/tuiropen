@@ -43,16 +43,6 @@ extra-dependencies = ["mypy>=1.0.0"]
 [tool.hatch.envs.types.scripts]
 check = "mypy --install-types --non-interactive {args:tuiropen tests}"
 
-[tool.coverage.run]
-source_pkgs = ["tuiropen", "tests"]
-branch = true
-parallel = true
-omit = ["tuiropen/__about__.py"]
-
-[tool.coverage.paths]
-tuiropen = ["tuiropen", "*/tuiropen/tuiropen"]
-tests = ["tests", "*/tuiropen/tests"]
-
 [tool.coverage.report]
 exclude_lines = ["no cov", "if __name__ == .__main__.:", "if TYPE_CHECKING:"]
 

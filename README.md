@@ -18,7 +18,6 @@
 This script allows users to open image/video URLs from tuir in their default
 image viewer or video player.
 
-
 usage:
     tuiropen <url>
 
