@@ -35,7 +35,7 @@ from pathlib import Path
 import sh
 from RedDownloader import RedDownloader
 
-__version__ = '0.0.5'
+__version__ = '0.0.6'
 __appname__ = 'tuiropen'
 TEMP = Path(tempfile.gettempdir()) / __appname__
 
@@ -48,6 +48,8 @@ logger = logging.getLogger(__name__)
 
 def notify(mesg: str, icon: str = 'mpv') -> int:
     return sh.notify_send(
+        '-r',
+        '999',
         f'--app-name={__appname__}',
         '--icon',
         icon,
@@ -57,8 +59,10 @@ def notify(mesg: str, icon: str = 'mpv') -> int:
 
 
 def notify_open(url: str, filetype: str) -> int:
-    t = 'video' if filetype == 'v' else 'image'
-    return notify(f'opening {t} {url!s}', icon=t)
+    types = {'i': 'image', 'v': 'video', 'gif': 'GIF'}
+    t = types.get(filetype, '')
+    icon = 'video' if t == 'video' else 'image'
+    return notify(f'<b>{t}</b>: {url!s}', icon=icon)
 
 
 def play(file: str) -> int:
